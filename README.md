@@ -1,4 +1,4 @@
-# Gemini Prompts Library
+# Gemini Prompts Hub
 
 A curated, easy‑to‑browse collection of creative prompts for AI image generation.
 

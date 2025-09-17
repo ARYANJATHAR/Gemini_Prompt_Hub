@@ -454,6 +454,13 @@ if (modal) {
         });
     }
 
+    // Add event listener for the modal copy button
+    if (modalCopy) {
+        modalCopy.addEventListener('click', (e) => {
+            handleCopyPrompt(e, modalPrompt.textContent, modalCopy);
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
