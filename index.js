@@ -392,35 +392,7 @@ const modalCopy = document.getElementById('modal-copy');
 const modalCloseBtn = document.querySelector('.modal-close');
 const modalContent = document.querySelector('.modal-content');
 
-// Initialize demo gallery
-const demoGallery = document.getElementById('demo-gallery');
-const demoImagesContainer = demoGallery?.querySelector('.demo-images');
 
-if (demoImagesContainer) {
-    const demoImages = ['demo_image_female.png', 'Demo_Image_male.png'];
-    
-    demoImages.forEach(image => {
-        const img = document.createElement('img');
-        
-        // Use optimized demo images with fallback to original
-        const optimizedSrc = `public/demo_image_optimized/${image.replace('.png', '.webp')}`;
-        const fallbackSrc = `public/demo_image/${image}`;
-        
-        img.src = optimizedSrc;
-        img.alt = 'Demo Image';
-        img.loading = 'lazy';
-        
-        // Fallback to original PNG if optimized WebP fails
-        img.onerror = () => {
-            if (img.src === optimizedSrc) {
-                img.src = fallbackSrc;
-            }
-        };
-        
-        img.addEventListener('click', () => openModal(img.src, 'Demo Image', 'Example of AI-generated image using our prompts'));
-        demoImagesContainer.appendChild(img);
-    });
-}
 
 // Enhanced gallery rendering
 const renderGallery = (data = AppState.filteredData) => {
@@ -667,4 +639,32 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize the application
 if (gallery) {
     renderGallery();
+}
+
+// Scroll to Top Button Functionality
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+if (scrollToTopBtn) {
+    // Show/hide scroll button based on scroll position
+    window.addEventListener('scroll', () => {
+        const gallery = document.getElementById('prompt-gallery');
+        if (gallery) {
+            const galleryBottom = gallery.offsetTop + gallery.offsetHeight;
+            const scrollPosition = window.pageYOffset + window.innerHeight;
+            
+            if (scrollPosition >= galleryBottom) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
