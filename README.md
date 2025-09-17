@@ -2,6 +2,8 @@
 
 A curated, easy‑to‑browse collection of creative prompts for AI image generation.
 
+**Live Site:** [https://geminiprompthub.netlify.app/](https://geminiprompthub.netlify.app/)
+
 - Discover 24 thoughtfully written prompts across styles like fashion, portrait, lifestyle, nature, and more
 - Search by keywords, category, or tags to quickly find relevant prompts
 - Browse a visual gallery with preview images for each prompt
