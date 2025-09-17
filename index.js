@@ -401,9 +401,22 @@ if (demoImagesContainer) {
     
     demoImages.forEach(image => {
         const img = document.createElement('img');
-        img.src = `public/demo_image/${image}`;
+        
+        // Use optimized demo images with fallback to original
+        const optimizedSrc = `public/demo_image_optimized/${image.replace('.png', '.webp')}`;
+        const fallbackSrc = `public/demo_image/${image}`;
+        
+        img.src = optimizedSrc;
         img.alt = 'Demo Image';
         img.loading = 'lazy';
+        
+        // Fallback to original PNG if optimized WebP fails
+        img.onerror = () => {
+            if (img.src === optimizedSrc) {
+                img.src = fallbackSrc;
+            }
+        };
+        
         img.addEventListener('click', () => openModal(img.src, 'Demo Image', 'Example of AI-generated image using our prompts'));
         demoImagesContainer.appendChild(img);
     });
@@ -445,9 +458,22 @@ const createPromptCard = (item, index) => {
     imageContainer.className = 'image-container';
     
     const img = document.createElement('img');
-    img.src = `public/output_image/output_${item.id}.png`;
+    
+    // Use optimized images with fallback to original
+    const optimizedSrc = `public/output_image_optimized/output_${item.id}.webp`;
+    const fallbackSrc = `public/output_image/output_${item.id}.png`;
+    
+    img.src = optimizedSrc;
     img.alt = item.prompt;
     img.loading = 'lazy';
+    
+    // Fallback to original PNG if optimized WebP fails
+    img.onerror = () => {
+        if (img.src === optimizedSrc) {
+            img.src = fallbackSrc;
+        }
+    };
+    
     img.addEventListener('click', () => openModal(img.src, `Prompt ${item.id}`, item.prompt));
     imageContainer.appendChild(img);
 
