@@ -1,28 +1,11 @@
-# Gemini Prompt Library
+# Gemini Prompts Library
 
-A simple, responsive web application showcasing trending AI image generation prompts. Browse, search, like, and copy creative prompts for your AI image generation needs.
+A curated, easy‑to‑browse collection of creative prompts for AI image generation.
 
-## Features
+- Discover 24 thoughtfully written prompts across styles like fashion, portrait, lifestyle, nature, and more
+- Search by keywords, category, or tags to quickly find relevant prompts
+- Browse a visual gallery with preview images for each prompt
+- Open any card to view the full prompt in a modal and copy it instantly
+- Demo images showcase example inputs to inspire how you might use the prompts
 
-- 🎨 Gallery of creative image prompts
-- 🔍 Search functionality to find specific prompts
-- ❤️ Like your favorite prompts
-- 📋 Copy prompts to clipboard with one click
-- 📱 Fully responsive design
-- 🌙 Modern dark theme
-
-## How to Run
-
-**Easiest way:** Simply open `index.html` in your web browser!
-
-**Or use a local server:**
-- `python -m http.server 8000` (then visit http://localhost:8000)
-- Or any other web server of your choice
-
-## Files
-
-- `index.html` - Main HTML structure
-- `index.css` - Complete styling
-- `index.js` - Application logic and interactivity
-
-No build tools or dependencies required!
+Use it to spark ideas and speed up prompt crafting for models that generate images (e.g., Gemini or similar). It’s lightweight, fast, and focused purely on finding and copying great prompts.

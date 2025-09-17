@@ -233,6 +233,8 @@ const modalImage = document.getElementById('modal-image');
 const modalTitle = document.getElementById('modal-title');
 const modalPrompt = document.getElementById('modal-prompt');
 const modalCopy = document.getElementById('modal-copy');
+const modalCloseBtn = document.querySelector('.modal-close');
+const modalContent = document.querySelector('.modal-content');
 
 // Initialize demo gallery
 const demoGallery = document.getElementById('demo-gallery');
@@ -360,11 +362,8 @@ const openModal = (imageSrc, title, prompt) => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    
-    modalCopy.onclick = async () => {
-        await copyToClipboard(prompt);
-        showNotification('Prompt copied to clipboard!');
-    };
+    // Reset scroll position inside prompt on open
+    modalPrompt.scrollTop = 0;
 };
 
 const closeModal = () => {
@@ -438,12 +437,23 @@ viewButtons.forEach(btn => {
 
 // Modal event listeners
 if (modal) {
+    // Close when clicking overlay or explicit close button (including its children)
     modal.addEventListener('click', (e) => {
-        if (e.target.hasAttribute('data-close-modal')) {
+        const target = e.target;
+        if (target.closest('[data-close-modal]')) {
+            e.preventDefault();
             closeModal();
         }
     });
-    
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
